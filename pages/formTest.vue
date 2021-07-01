@@ -10,6 +10,15 @@
           class="rounded border-gray-500"
         />
       </fieldset>
+      <fieldset class="flex flex-col gap-2 w-96 mb-4">
+        <label>email</label>
+        <input
+          v-model="form.email"
+          type="email"
+          class="rounded border-gray-500"
+          placeholder="Email"
+        />
+      </fieldset>
       <button
         type="submit"
         class="px-4 py-2 bg-black hover:opacity-95 text-white rounded font-bold"
@@ -17,6 +26,8 @@
         Submit
       </button>
     </form>
+
+    <p>result: {{ form }}</p>
   </div>
 </template>
 
@@ -28,6 +39,7 @@ export default defineComponent({
   setup() {
     const form = reactive({
       name: '',
+      email: '',
     })
 
     const onSubmit = () => {

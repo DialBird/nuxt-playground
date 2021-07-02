@@ -29,6 +29,7 @@ export default {
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
     '@nuxtjs/composition-api/module',
+    'nuxt-microcms-module',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -38,6 +39,16 @@ export default {
   build: {},
 
   server: {
-    port: 3001
+    port: 3001,
+  },
+
+  srcDir: 'src/',
+
+  microcms: {
+    options: {
+      serviceDomain: process.env.SERVICE_DOMAIN,
+      apiKey: process.env.API_KEY,
+    },
+    mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
   },
 }

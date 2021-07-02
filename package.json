@@ -17,7 +17,9 @@
     "@vuelidate/core": "^2.0.0-alpha.19",
     "@vuelidate/validators": "^2.0.0-alpha.17",
     "core-js": "^3.9.1",
-    "nuxt": "^2.15.3"
+    "node-sass": "^6.0.1",
+    "nuxt": "^2.15.3",
+    "sass-loader": "10.1.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.3",

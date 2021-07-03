@@ -51,4 +51,7 @@ export default {
     },
     mode: process.env.NODE_ENV === 'production' ? 'server' : 'all',
   },
+  publicRuntimeConfig: {
+    microCmsApiKey: process.env.API_KEY,
+  },
 }

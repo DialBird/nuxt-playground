@@ -17,6 +17,7 @@
     "@tailwindcss/forms": "^0.3.3",
     "@vuelidate/core": "^2.0.0-alpha.19",
     "@vuelidate/validators": "^2.0.0-alpha.17",
+    "@vueuse/core": "^5.0.3",
     "core-js": "^3.9.1",
     "node-sass": "^5.0.0",
     "nuxt": "^2.15.3",

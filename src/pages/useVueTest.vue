@@ -5,12 +5,13 @@
     <p>dark: {{ isDark }}</p>
     <p>local: {{ store }}</p>
     <MouseChecker />
+    <button @click="toggleDark">darker</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api'
-import { useMouse, usePreferredDark, useLocalStorage } from '@vueuse/core'
+import { defineComponent, ref, watch } from '@nuxtjs/composition-api'
+import { useMouse, useLocalStorage, useDark, useToggle } from '@vueuse/core'
 import MouseChecker from '@/components/MouseChecker.vue'
 
 export default defineComponent({
@@ -20,9 +21,11 @@ export default defineComponent({
   },
   setup() {
     const { x, y } = useMouse()
+    const isDark = useDark()
+    const toggleDark = useToggle(isDark)
 
     // is user prefers dark theme
-    const isDark = usePreferredDark()
+    // const isDark = usePreferredDark()
 
     // persist state in localStorage
     const store = useLocalStorage('my-storage', {
@@ -30,7 +33,7 @@ export default defineComponent({
       color: 'red',
     })
 
-    return { x, y, isDark, store }
+    return { x, y, isDark, store, toggleDark }
   },
 })
 </script>

@@ -6,12 +6,22 @@
     <p>local: {{ store }}</p>
     <MouseChecker />
     <button @click="toggleDark">darker</button>
+    <div
+      ref="el"
+      class="elBox mb-4 resize overflow-auto border border-blue-200"
+    ></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watch } from '@nuxtjs/composition-api'
-import { useMouse, useLocalStorage, useDark, useToggle } from '@vueuse/core'
+import {
+  useMouse,
+  useLocalStorage,
+  useDark,
+  useToggle,
+  useElementBounding,
+} from '@vueuse/core'
 import MouseChecker from '@/components/MouseChecker.vue'
 
 export default defineComponent({
@@ -24,6 +34,11 @@ export default defineComponent({
     const isDark = useDark()
     const toggleDark = useToggle(isDark)
 
+    const el = ref(null)
+    const { top, right, bottom, left, width, height } = useElementBounding(el)
+    watch(width, (a) => console.log(a))
+    console.log(top.value, right.value, width.value, height.value)
+
     // is user prefers dark theme
     // const isDark = usePreferredDark()
 
@@ -33,9 +48,14 @@ export default defineComponent({
       color: 'red',
     })
 
-    return { x, y, isDark, store, toggleDark }
+    return { x, y, isDark, store, toggleDark, el }
   },
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.elBox {
+  width: 333px;
+  height: 222px;
+}
+</style>

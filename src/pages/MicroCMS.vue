@@ -15,12 +15,6 @@ import {
 } from '@nuxtjs/composition-api'
 import { useState } from '@/composables/state'
 
-const sleep = (millisec) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, millisec)
-  })
-}
-
 export default defineComponent({
   name: 'MicroCMS',
   setup() {
@@ -44,18 +38,16 @@ export default defineComponent({
     console.log(fm.value.name)
 
     const { fetch } = useFetch(async () => {
-      await sleep(0).then(async () => {
-        const ip = await $axios.$get(
-          'https://keisuke-sample.microcms.io/api/v1/news',
-          {
-            headers: { 'X-API-KEY': $config.microCmsApiKey },
-            params: {
-              limit: 2,
-            },
+      const ip = await $axios.$get(
+        'https://keisuke-sample.microcms.io/api/v1/news',
+        {
+          headers: { 'X-API-KEY': $config.microCmsApiKey },
+          params: {
+            limit: 2,
           },
-        )
-        a.value = ip.contents
-      })
+        },
+      )
+      a.value = ip.contents
     })
     fetch()
 
